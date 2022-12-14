@@ -39,7 +39,7 @@ const updateActor = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     await updateService(id, req.body);
-    res.status(200).json({
+    res.status(201).json({
         status: 'success',
         message:  'actor updated' 
       });

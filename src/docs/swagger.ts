@@ -168,7 +168,7 @@
       },
     ],
   },
-  apis: ["./src/routes/*.ts"],
+  apis: ["../routes/*.ts"],
 };
 
 export default options;

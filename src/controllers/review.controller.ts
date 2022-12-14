@@ -57,7 +57,7 @@ const postReview = async (req: RequestExt, res: Response) => {
   try {
     const { movieId } = req.params;
     const responseUser = await insertService(req.body, movieId, req.user);
-    res.status(200).json({
+    res.status(201).json({
         status: 'success',
         data:  responseUser 
       });

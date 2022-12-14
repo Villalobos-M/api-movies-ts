@@ -227,7 +227,7 @@ router.get("/:id", validateSesion, getMovie);
  *          schema:
  *            $ref: '#/components/schemas/PostMovie'
  *    responses:
- *      200:
+ *      201:
  *        description: the movie was successfully create
  *        content:
  *          application/json:

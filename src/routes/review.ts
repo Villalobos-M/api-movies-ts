@@ -216,7 +216,7 @@ router.get("/:id", validateSesion, getReview);
  *          schema:
  *            $ref: '#/components/schemas/PutPostReview'
  *    responses:
- *      200:
+ *      201:
  *        description: the review was successfully create
  *        content:
  *          application/json:

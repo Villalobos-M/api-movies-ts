@@ -201,7 +201,7 @@ router.get("/:id", validateSesion, getActor);
  *          schema:
  *            $ref: '#/components/schemas/PutPostActor'
  *    responses:
- *      200:
+ *      201:
  *        description: the movie was successfully create
  *        content:
  *          application/json:

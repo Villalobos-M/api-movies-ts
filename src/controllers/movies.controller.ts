@@ -54,7 +54,7 @@ const postMovie = async (req: Request, res: Response) => {
     const newMovie = req.body
     
     const responseUser : Movie = await insertService(newMovie, `${req.file?.path}`);
-    res.status(200).json({
+    res.status(201).json({
       status: 'success',
         data:  responseUser 
       });
