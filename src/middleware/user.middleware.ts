@@ -7,7 +7,10 @@ const protectAccountOwner = async (req: RequestExt, res: Response, next: NextFun
    const id  = req.params.id;
    const user : User | null = await getByIdService(`${req.user}`)
    const idUserFind = user?._id
-   if (id !== idUserFind?.valueOf()) return res.send('No tienes permiso para editar este perfil')
+   if (id !== idUserFind?.valueOf()) return res.status(403).json({
+                                             status: 'error',
+                                             message:  'Acceso denegado, No tienes permiso para editar este perfil' 
+                                          })
    next();
 };
 

@@ -7,9 +7,9 @@ const registerCtrl = async (req: Request, res: Response) => {
     
   }
   await registerNewUser(req.body);
-  res.status(403).json({
+  res.status(201).json({
         status: 'success',
-        message:  'registro exitoso' 
+        message:  'successful sign in' 
       })
 };
 

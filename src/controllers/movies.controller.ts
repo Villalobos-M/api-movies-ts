@@ -80,15 +80,15 @@ const deleteMovie = async ({ params }: Request, res: Response) => {
 
 const assignActor = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const { actor } = req.body;
-  const response = await assignActorService(id, actor)
+  const { actorId } = req.body;
+  const response = await assignActorService(id, actorId)
   res.send(response);
 }
 const deleteActor = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const { actor } = req.body;
-    await deleteActorService(id, actor);
+    const { actorId } = req.body;
+    await deleteActorService(id, actorId);
 
     res.status(200).json({
         status: 'success',

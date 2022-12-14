@@ -15,13 +15,16 @@ const validateSesion = async(req: RequestExt, res: Response, next: NextFunction)
     const user = await getUserbyEmail(isUser.id)
     
     if (!isUser) {
-      res.status(401);
-      res.send("NO_TIENES_UN_JWT_VALIDO");
+      res.status(401).json({
+        status: 'error',
+        message:  'Unauthorized, you do not have an authorized jwt' 
+       })
+   next();
     } else {
       req.user = user?.id;
       next();
     }
-  } catch (e) {
+    } catch (e) {
     console.log({ e });
     res.status(400);
     res.send("SESSION_NO_VALIDAD");

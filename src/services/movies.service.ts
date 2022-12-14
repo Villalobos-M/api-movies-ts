@@ -29,16 +29,16 @@ const updateService = async (id: string, data: Movie) => {
   return responseItem;
 };
 
-const assignActorService = async (idMovie: string, actor: string) => {
+const assignActorService = async (idMovie: string, actorId: string) => {
   const movieUpdate = await movieModel.findByIdAndUpdate(
     idMovie,
     {
-      $push: { actorsId: actor },
+      $push: { actorsId: actorId },
     },
     { useFindAndModify: false }
   );
   await ActorModel.findByIdAndUpdate(
-    actor,
+    actorId,
     {
       $push: { movies: idMovie },
     },
@@ -47,15 +47,22 @@ const assignActorService = async (idMovie: string, actor: string) => {
   return movieUpdate;
 };
 
-const deleteActorService = async (id: string, actor: string) => {
-  const courseUpdated = await movieModel.findByIdAndUpdate(
-      id,
+const deleteActorService = async (idMovie: string, actorId: string) => {
+  const deleteActor = await movieModel.findByIdAndUpdate(
+      idMovie,
       {
-        $pull: { actorsId: actor },
+        $pull: { actorsId: actorId },
       },
       { useFindAndModify: false }
     );
-    return courseUpdated
+    await ActorModel.findByIdAndUpdate(
+      actorId,
+      {
+        $pull: { movies: idMovie },
+      },
+      { useFindAndModify: false }
+    );
+    return deleteActor
 };
 
 const deleteService = async (id: string) => {
