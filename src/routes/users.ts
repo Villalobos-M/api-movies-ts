@@ -10,7 +10,7 @@ import { protectAccountOwner } from "../middleware/user.middleware";
 const router = Router();
 
 /**
- * @swagger
+ * @openapi
  * components:
  *  securitySchemes: 
  *    bearerAuth: 
@@ -105,7 +105,7 @@ const router = Router();
 
 
 /**
- * @swagger
+ * @openapi
  * /users:
  *  get:
  *    summary: returns a list of users
@@ -124,7 +124,7 @@ const router = Router();
 router.get("/",   getUsers);
 
 /**
- * @swagger
+ * @openapi
  * /users/{id}:
  *  get:
  *    summary: get a user by id
@@ -149,7 +149,7 @@ router.get("/",   getUsers);
 router.get("/:id",  getUser);
 
 /**
- * @swagger
+ * @openapi
  * /users/{id}:
  *  put:
  *    summary: update a user by id
@@ -188,7 +188,7 @@ router.get("/:id",  getUser);
 router.put("/:id", validateSesion, protectAccountOwner, updateUser);
 
 /**
- * @swagger
+ * @openapi
  * /users/{id}:
  *  delete:
  *    summary: delete a user by id

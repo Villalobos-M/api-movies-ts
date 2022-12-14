@@ -3,9 +3,7 @@ import express from "express";
 import cors from "cors";
 import { router } from "./routes";
 import db from "./config/mongodb";
-import swaggerUi from 'swagger-ui-express'
-import swaggerJSDoc from "swagger-jsdoc";
-import swaggerSetup from "./docs/swagger"
+import {sawggerDocs} from './docs/swagger'
 
 const PORT = process.env.PORT || 3001;
 
@@ -17,11 +15,12 @@ app.use(express.json());
 app.use(router);
 
 //documentation
-const specs = swaggerJSDoc(swaggerSetup)
-app.use("/documentation", swaggerUi.serve, swaggerUi.setup(specs))
 
 //database
 db().then(() => console.log("Conexion Ready"));
 
-app.listen(PORT, () => console.log(`Listo por el puerto ${PORT}`));
+app.listen(PORT, () => {
+   console.log(`Listo por el puerto ${PORT}`)
+   sawggerDocs(app, PORT)
+});
 

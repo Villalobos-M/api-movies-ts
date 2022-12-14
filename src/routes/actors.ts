@@ -9,7 +9,7 @@ const router = Router();
 
 
 /**
- * @swagger
+ * @openapi
  * components:
  *  securitySchemes: 
  *    bearerAuth: 
@@ -130,7 +130,7 @@ const router = Router();
  */
 
 /**
- * @swagger
+ * @openapi
  * /actors:
  *  get:
  *    summary: returns a list of actor
@@ -156,7 +156,7 @@ const router = Router();
 router.get("/", validateSesion, getActors);
 
 /**
- * @swagger
+ * @openapi
  * /actors/{id}:
  *  get:
  *    summary: get a actor by id
@@ -188,7 +188,7 @@ router.get("/", validateSesion, getActors);
 router.get("/:id", validateSesion, getActor);
 
 /**
- * @swagger
+ * @openapi
  * /actors:
  *  post:
  *    summary: create movie in system
@@ -225,7 +225,7 @@ router.get("/:id", validateSesion, getActor);
 router.post("/", validateSesion, protectAdmin, multerMiddleware.single("actorImage"), postActor);
 
 /**
- * @swagger
+ * @openapi
  * /actors/{id}:
  *  put:
  *    summary: Update a actor by id
@@ -264,7 +264,7 @@ router.post("/", validateSesion, protectAdmin, multerMiddleware.single("actorIma
 router.put("/:id", validateSesion, protectAdmin, updateActor);
 
 /**
- * @swagger
+ * @openapi
  * /actors/{id}:
  *  delete:
  *    summary: delete a actor by id

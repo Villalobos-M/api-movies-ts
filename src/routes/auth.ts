@@ -4,7 +4,7 @@ import { registerCtrl, loginCtrl } from "../controllers/auth.controller";
 const router = Router();
 
 /**
- * @swagger
+ * @openapi
  * components:
  *  schemas:
  *    Register:
@@ -57,7 +57,7 @@ const router = Router();
 
 
 /**
- * @swagger
+ * @openapi
  * /auth/register:
  *  post:
  *    summary: register in system
@@ -82,7 +82,7 @@ const router = Router();
 router.post("/register", registerCtrl);
 
 /**
- * @swagger
+ * @openapi
  * /auth/login:
  *  post:
  *    summary: login in system

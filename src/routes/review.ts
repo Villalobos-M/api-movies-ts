@@ -9,7 +9,7 @@ const router = Router();
 
 
 /**
- * @swagger
+ * @openapi
  * components:
  *  securitySchemes: 
  *    bearerAuth: 
@@ -144,7 +144,7 @@ const router = Router();
 
 
 /**
- * @swagger
+ * @openapi
  * /review:
  *  get:
  *    summary: returns a list of reviews
@@ -170,7 +170,7 @@ const router = Router();
 router.get("/", validateSesion, getReviews);
 
 /**
- * @swagger
+ * @openapi
  * /review/{id}:
  *  get:
  *    summary: get a review by id
@@ -202,7 +202,7 @@ router.get("/", validateSesion, getReviews);
 router.get("/:id", validateSesion, getReview);
 
 /**
- * @swagger
+ * @openapi
  * /review/{movieId}:
  *  post:
  *    summary: create review in movie
@@ -234,7 +234,7 @@ router.get("/:id", validateSesion, getReview);
 router.post("/:movieId", validateSesion, postReview);
 
 /**
- * @swagger
+ * @openapi
  * /review/{id}:
  *  put:
  *    summary: update a movie by id
@@ -273,7 +273,7 @@ router.post("/:movieId", validateSesion, postReview);
 router.put("/:id", validateSesion, reviewOwner, updateReview);
 
 /**
- * @swagger
+ * @openapi
  * /review/{id}:
  *  delete:
  *    summary: delete a review by id

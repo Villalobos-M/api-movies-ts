@@ -9,7 +9,7 @@ import multerMiddleware from "../middleware/file.middleware";
 const router = Router();
 
 /**
- * @swagger
+ * @openapi
  * components:
  *  securitySchemes: 
  *    bearerAuth: 
@@ -156,7 +156,7 @@ const router = Router();
 
 
 /**
- * @swagger
+ * @openapi
  * /movies:
  *  get:
  *    summary: returns a list of movies
@@ -182,7 +182,7 @@ const router = Router();
 router.get("/", validateSesion, getMovies);
 
 /**
- * @swagger
+ * @openapi
  * /movies/{id}:
  *  get:
  *    summary: get a movie by id
@@ -214,7 +214,7 @@ router.get("/", validateSesion, getMovies);
 router.get("/:id", validateSesion, getMovie);
 
 /**
- * @swagger
+ * @openapi
  * /movies:
  *  post:
  *    summary: create movie in system
@@ -251,7 +251,7 @@ router.get("/:id", validateSesion, getMovie);
 router.post("/", validateSesion, protectAdmin, multerMiddleware.single("myfile"), postMovie);
 
 /**
- * @swagger
+ * @openapi
  * /movies/{id}:
  *  put:
  *    summary: update a movie by id
@@ -290,7 +290,7 @@ router.post("/", validateSesion, protectAdmin, multerMiddleware.single("myfile")
 router.put("/:id", validateSesion, protectAdmin, updateMovie);
 
 /**
- * @swagger
+ * @openapi
  * /movies/{id}:
  *  delete:
  *    summary: delete a movie by id
@@ -325,7 +325,7 @@ router.delete("/:id", validateSesion, protectAdmin, deleteMovie);
 
 // ENDPOINTS ACTORS IN MOVIE
 /**
- * @swagger
+ * @openapi
  * /movies/assignActor/{id}:
  *  put:
  *    summary: add actor to movie
@@ -364,7 +364,7 @@ router.delete("/:id", validateSesion, protectAdmin, deleteMovie);
 router.put("/assignActor/:id", validateSesion, protectAdmin, assignActor);
 
 /**
- * @swagger
+ * @openapi
  * /movies/deleteActor/{id}:
  *  delete:
  *    summary: delete actor of movie by id
