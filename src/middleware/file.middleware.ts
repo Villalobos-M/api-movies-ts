@@ -5,7 +5,7 @@ const PATH_STORAGE = `${process.cwd()}/storage`;
 
 const storage = diskStorage({
   destination(req: Request, file: Express.Multer.File, cb: any) {
-    cb(null, PATH_STORAGE);
+    cb(null, 'storage');
   },
   filename(req: Request, file: Express.Multer.File, cb: any) {
     const ext = file.originalname.split(".").pop();
