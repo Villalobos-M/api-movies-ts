@@ -43,7 +43,7 @@ const updateMovie = async (req: Request, res: Response) => {
     await updateService(id, req.body);
     res.status(200).json({
       status: 'success',
-      message: 'movie updated'
+      message: 'an movie was updated'
     })
   } catch (e) {
     handleHttp(res, "ERROR_UPDATE_MOVIE", e);
@@ -79,16 +79,19 @@ const deleteMovie = async ({ params }: Request, res: Response) => {
 };
 
 const assignActor = async (req: Request, res: Response) => {
-  const { id } = req.params;
+  const { movieId } = req.params;
   const { actorId } = req.body;
-  const response = await assignActorService(id, actorId)
-  res.send(response);
+  await assignActorService(movieId, actorId)
+  res.status(201).json({
+        status: 'success',
+        message:  'an actor was added' 
+      });
 }
 const deleteActor = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const { movieId } = req.params;
     const { actorId } = req.body;
-    await deleteActorService(id, actorId);
+    await deleteActorService(movieId, actorId);
 
     res.status(200).json({
         status: 'success',

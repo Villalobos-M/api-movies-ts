@@ -19,13 +19,19 @@ const loginCtrl = async ({ body }: Request, res: Response) => {
 
   if (responseUser === "PASSWORD_INCORRECT") {
     res.status(403).json({
-        status: 'success',
-        message:  'credenciales incorrectas' 
+        status: 'error',
+        message:  'credentials are invalid' 
       })
   } else {
     res.status(200).json({
         status: 'success',
-        data:  responseUser 
+        token:  responseUser 
+      })
+  }
+  if(responseUser === "NOT_FOUND_USER"){
+    res.status(404).json({
+        status: 'error',
+        message:  'email not registered' 
       })
   }
 };

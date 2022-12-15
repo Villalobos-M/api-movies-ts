@@ -58,7 +58,7 @@ const router = Router();
  *        image: ../image.jpg
  *        reviews: []
  *        actorsId: []
- *    PostMovie:
+ *    PostPutMovie:
  *      type: object
  *      properties:
  *        title:
@@ -83,34 +83,6 @@ const router = Router();
  *        - title
  *        - description
  *        - duration
- *    PutMovie:
- *      type: object
- *      properties:
- *        title:
- *          type: string
- *          description: the auto-generated id of task
- *        description:
- *          type: string
- *          description: the name of the user
- *        duration:
- *          type: string
- *          description: the email of the user
- *        top:
- *          type: number
- *          description: the password of the user
- *        genre:
- *          type: string
- *          description: the auto-generated role of user
- *        image:
- *          type: string
- *          description: the auto-generated role of user
- *    ActorIn:
- *      type: object
- *      properties:
- *        actorId:
- *          type: string
- *          description: id actor
- * 
  *    MovieNotFound:
  *      type: object
  *      properties:
@@ -167,9 +139,15 @@ const router = Router();
  *        content:
  *          application/json:
  *            schema:
- *              type: array
- *              items:
- *                $ref: '#/components/schemas/Movie'
+ *              type: object
+ *              properties:
+ *                status:
+ *                  type: string
+ *                  example: succes
+ *                data:
+ *                  type: array
+ *                  items:
+ *                    $ref: '#/components/schemas/Movie'
  *      401:
  *        description: The user do not have an authorized jwt
  *        content:
@@ -195,7 +173,13 @@ router.get("/", validateSesion, getMovies);
  *        content:
  *          application/json:
  *            schema:
- *            $ref: '#/components/schemas/Movie'
+ *              type: object
+ *              properties:
+ *                status:
+ *                  type: string
+ *                  example: succes
+ *                data:
+ *                  $ref: '#/components/schemas/Movie'
  *      404:
  *        description: the movie was not found
  *        content:
@@ -225,14 +209,20 @@ router.get("/:id", validateSesion, getMovie);
  *      content:
  *        application/json:
  *          schema:
- *            $ref: '#/components/schemas/PostMovie'
+ *            $ref: '#/components/schemas/PostPutMovie'
  *    responses:
  *      201:
  *        description: the movie was successfully create
  *        content:
  *          application/json:
  *            schema:
- *              $ref: '#/components/schemas/Movie'
+ *              type: object
+ *              properties:
+ *                status:
+ *                  type: string
+ *                  example: succes
+ *                data:
+ *                  $ref: '#/components/schemas/Movie'
  *      403:
  *        description: The user does not have permissions
  *        content:
@@ -264,14 +254,21 @@ router.post("/", validateSesion, protectAdmin, multerMiddleware.single("myfile")
  *      content:
  *        application/json:
  *          schema:
- *            $ref: '#/components/schemas/PutMovie'
+ *            $ref: '#/components/schemas/PostPutMovie'
  *    responses:
  *      200:
  *        description: The updated user 
  *        content:
  *          application/json:
  *            schema:
- *            $ref: '#/components/schemas/Movie'
+ *              type: object
+ *              properties:
+ *                status:
+ *                  type: string
+ *                  example: succes
+ *                message:
+ *                  type: string
+ *                  example: an movie was updated
  *      403:
  *        description: The user does not have permissions
  *        content:
@@ -304,7 +301,14 @@ router.put("/:id", validateSesion, protectAdmin, updateMovie);
  *        content:
  *          application/json:
  *            schema:
- *            $ref: '#/components/schemas/Movie'
+ *              type: object
+ *              properties:
+ *                status:
+ *                  type: string
+ *                  example: succes
+ *                message:
+ *                  type: string
+ *                  example: an movie was deleted
  *      403:
  *        description: The user does not have permissions
  *        content:
@@ -326,7 +330,7 @@ router.delete("/:id", validateSesion, protectAdmin, deleteMovie);
 // ENDPOINTS ACTORS IN MOVIE
 /**
  * @openapi
- * /movies/assignActor/{id}:
+ * /movies/assignActor/{movieId}:
  *  put:
  *    summary: add actor to movie
  *    tags: [Movies]
@@ -338,14 +342,25 @@ router.delete("/:id", validateSesion, protectAdmin, deleteMovie);
  *      content:
  *        application/json:
  *          schema:
- *            $ref: '#/components/schemas/ActorIn'
+ *            type: object
+ *            properties:
+ *              actorId:
+ *                type: string
+ *                example: gQBOyGbxcQy6tEp0aZ78X
  *    responses:
  *      200:
  *        description: The updated user 
  *        content:
  *          application/json:
  *            schema:
- *            $ref: '#/components/schemas/Movie'
+ *              type: object
+ *              properties:
+ *                status:
+ *                  type: string
+ *                  example: succes
+ *                message:
+ *                  type: string
+ *                  example: an actor was added
  *      403:
  *        description: The user does not have permissions
  *        content:
@@ -361,11 +376,11 @@ router.delete("/:id", validateSesion, protectAdmin, deleteMovie);
  *    security:
  *      - bearerAuth: []
  */
-router.put("/assignActor/:id", validateSesion, protectAdmin, assignActor);
+router.put("/assignActor/:movieId", validateSesion, protectAdmin, assignActor);
 
 /**
  * @openapi
- * /movies/deleteActor/{id}:
+ * /movies/deleteActor/{movieId}:
  *  delete:
  *    summary: delete actor of movie by id
  *    tags: [Movies]
@@ -377,14 +392,25 @@ router.put("/assignActor/:id", validateSesion, protectAdmin, assignActor);
  *      content:
  *        application/json:
  *          schema:
- *            $ref: '#/components/schemas/ActorIn'
+ *            type: object
+ *            properties:
+ *              actorId:
+ *                type: string
+ *                example: gQBOyGbxcQy6tEp0aZ78X
  *    responses:
  *      200:
  *        description: the movie was deleted
  *        content:
  *          application/json:
  *            schema:
- *            $ref: '#/components/schemas/Movie'
+ *              type: object
+ *              properties:
+ *                status:
+ *                  type: string
+ *                  example: succes
+ *                message:
+ *                  type: string
+ *                  example: an actor was deleted
  *      403:
  *        description: The user does not have permissions
  *        content:
@@ -400,7 +426,7 @@ router.put("/assignActor/:id", validateSesion, protectAdmin, assignActor);
  *    security:
  *      - bearerAuth: []
  */
-router.delete("/deleteActor/:id", validateSesion, protectAdmin, deleteActor);
+router.delete("/deleteActor/movieId", validateSesion, protectAdmin, deleteActor);
 
 
 export { router };

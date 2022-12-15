@@ -99,11 +99,44 @@ router.post("/register", registerCtrl);
  *        content:
  *          application/json:
  *            schema:
- *              $ref: '#/components/schemas/Register'
- *      500:
- *        description: Some server error
+ *              type: object
+ *              properties:
+ *                status:
+ *                  type: string
+ *                  example: succes
+ *                token:
+ *                  type: string
+ *      403:
+ *        description: credentials of user are invalid
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                status:
+ *                  type: string
+ *                  example: success
+ *                message:
+ *                  type: string
+ *                  example: credentials are invalid
+ *      404:
+ *        description: email of user not registered
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                status:
+ *                  type: string
+ *                  example: success
+ *                message:
+ *                  type: string
+ *                  example: email not registered
  *
  */
 router.post("/login", loginCtrl);
 
+
 export { router };
+
+//eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im1hckBnbWFpbC5jb20iLCJpYXQiOjE2NzEwMzkwNjQsImV4cCI6MTY3MTA0NjI2NH0.aBCqdW4ZCvb40IDnKG2WvCxxOS4yeE2WD8pb__6meSg

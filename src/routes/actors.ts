@@ -81,12 +81,6 @@ const router = Router();
  *      required:
  *        - name
  *        - country
- *    ActorInMovie:
- *      type: object
- *      properties:
- *        actor:
- *          type: string
- *          description: id actor
  *    ActorNotFound:
  *      type: object
  *      properties:
@@ -141,9 +135,15 @@ const router = Router();
  *        content:
  *          application/json:
  *            schema:
- *              type: array
- *              items:
- *                $ref: '#/components/schemas/Actor'
+ *              type: object
+ *              properties:
+ *                status:
+ *                  type: string
+ *                  example: succes
+ *                data:
+ *                  type: array
+ *                  items:
+ *                    $ref: '#/components/schemas/Actor'
  *      401:
  *        description: The user do not have an authorized jwt
  *        content:
@@ -169,7 +169,13 @@ router.get("/", validateSesion, getActors);
  *        content:
  *          application/json:
  *            schema:
- *            $ref: '#/components/schemas/Actor'
+ *              type: object
+ *              properties:
+ *                status:
+ *                  type: string
+ *                  example: succes
+ *                data:
+ *                  $ref: '#/components/schemas/Actor'
  *      404:
  *        description: the actor was not found
  *        content:
@@ -245,7 +251,14 @@ router.post("/", validateSesion, protectAdmin, multerMiddleware.single("actorIma
  *        content:
  *          application/json:
  *            schema:
- *            $ref: '#/components/schemas/Actor'
+ *              type: object
+ *              properties:
+ *                status:
+ *                  type: string
+ *                  example: succes
+ *                message:
+ *                  type: array
+ *                  example: an actor was updated
  *      403:
  *        description: The user does not have permissions
  *        content:
@@ -278,7 +291,14 @@ router.put("/:id", validateSesion, protectAdmin, updateActor);
  *        content:
  *          application/json:
  *            schema:
- *            $ref: '#/components/schemas/Actor'
+ *              type: object
+ *              properties:
+ *                status:
+ *                  type: string
+ *                  example: succes
+ *                message:
+ *                  type: array
+ *                  example: an actor was deleted
  *      403:
  *        description: The user does not have permissions
  *        content:

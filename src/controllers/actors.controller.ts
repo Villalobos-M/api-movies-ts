@@ -68,7 +68,7 @@ const deleteActor = async ({ params }: Request, res: Response) => {
     await deleteService(id);
     res.status(200).json({
         status: 'success',
-        message:  'deleted actor' 
+        message:  'an actor was deleted' 
       });
   } catch (e) {
     handleHttp(res, "ERROR_DELETE_ACTOR");

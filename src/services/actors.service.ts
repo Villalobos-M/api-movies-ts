@@ -10,7 +10,8 @@ const getAllService = async () => {
 };
 
 const getByIdService = async (id: string) => {
-  const responseItem = await actorModel.findOne({ _id: id });
+  const responseItem = await actorModel.findOne({ _id: id }, {createdAt:0, status:0, updatedAt:0})
+                                          .populate('movies', {title:1, description:1});
   return responseItem;
 };
 
