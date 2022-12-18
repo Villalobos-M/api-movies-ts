@@ -1,6 +1,6 @@
 import { ObjectId } from "mongoose";
 
-export interface Review {
+export interface IReview {
   title: string;
   text: string;
   rating: number;

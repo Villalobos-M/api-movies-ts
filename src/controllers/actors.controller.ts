@@ -3,7 +3,7 @@ import {getAllService, getByIdService, insertService, updateService, deleteServi
 } from "../services/actors.service";
 import { handleHttp } from "../utils/error.handle";
 
-const getActor = async (req: Request, res: Response) => {
+const getActor = async (req: Request, res: Response)=> {
   try {
     const {id} = req.params
     const response = await getByIdService(id);
@@ -41,7 +41,7 @@ const updateActor = async (req: Request, res: Response) => {
     await updateService(id, req.body);
     res.status(201).json({
         status: 'success',
-        message:  'actor updated' 
+        message:  'an actor was updated' 
       });
   } catch (e) {
     handleHttp(res, "ERROR_UPDATE_USER", e);
@@ -52,9 +52,9 @@ const postActor = async (req: Request, res: Response) => {
   const newActor = req.body
   try {
     await insertService(newActor, `${req.file?.path}`);
-    res.status(200).json({
+    res.status(201).json({
         status: 'success',
-        message:  'actor created' 
+        message:  'an actor was created' 
       });
   } catch (e) {
     handleHttp(res, "ERROR_POST_ACTOR", e);

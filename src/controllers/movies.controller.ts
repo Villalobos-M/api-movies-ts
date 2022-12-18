@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { Movie } from "../interfaces/movie.interface";
 import {RequestExt} from '../interfaces/req-ext.interface';
 import {getAllService, getByIdService, insertService, updateService, deleteService, assignActorService, deleteActorService
 } from "../services/movies.service";
@@ -43,7 +42,7 @@ const updateMovie = async (req: Request, res: Response) => {
     await updateService(id, req.body);
     res.status(200).json({
       status: 'success',
-      message: 'an movie was updated'
+      message: 'a movie was updated'
     })
   } catch (e) {
     handleHttp(res, "ERROR_UPDATE_MOVIE", e);
@@ -53,7 +52,7 @@ const postMovie = async (req: Request, res: Response) => {
   try {
     const newMovie = req.body
     
-    const responseUser : Movie = await insertService(newMovie, `${req.file?.path}`);
+    const responseUser = await insertService(newMovie, `${req.file?.path}`);
     res.status(201).json({
       status: 'success',
         data:  responseUser 
@@ -71,7 +70,7 @@ const deleteMovie = async ({ params }: Request, res: Response) => {
     
     res.status(200).json({
         status: 'success',
-        message:  'movie deleted' 
+        message:  'a movie was deleted' 
       });
   } catch (e) {
     handleHttp(res, "ERROR_DELETE_MOVIE");
@@ -95,7 +94,7 @@ const deleteActor = async (req: Request, res: Response) => {
 
     res.status(200).json({
         status: 'success',
-        message:  'actor deleted' 
+        message:  'an actor was deleted' 
       });
     
   } catch (e) {

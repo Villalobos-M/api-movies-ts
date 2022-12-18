@@ -24,9 +24,9 @@ const router = Router();
  *        - email
  *        - password
  *      example:
- *        name: Armando Stone
- *        email: armando@gmail.com
- *        password: passwrd1234
+ *        name: Example
+ *        email: example@gmail.com
+ *        password: example1234
  *    RegisterSuccesful:
  *      type: object
  *      properties:
@@ -50,8 +50,8 @@ const router = Router();
  *        - email
  *        - password
  *      example:
- *        email: armando@gmail.com
- *        password: passwrd1234
+ *        email: example@gmail.com
+ *        password: pass1234
 
  */
 
@@ -136,7 +136,4 @@ router.post("/register", registerCtrl);
  */
 router.post("/login", loginCtrl);
 
-
 export { router };
-
-//eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im1hckBnbWFpbC5jb20iLCJpYXQiOjE2NzEwMzkwNjQsImV4cCI6MTY3MTA0NjI2NH0.aBCqdW4ZCvb40IDnKG2WvCxxOS4yeE2WD8pb__6meSg

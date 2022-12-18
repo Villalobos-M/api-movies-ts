@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
-import { Actor } from "../interfaces/actor.interface";
+import { IActor } from "../interfaces/actor.interface";
 
-const ActorSchema = new Schema<Actor>(
+const ActorSchema = new Schema<IActor>(
   {
     name: {
       required: true,

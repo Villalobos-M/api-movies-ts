@@ -45,7 +45,7 @@ const updateReview = async (req: Request, res: Response) => {
    
      res.status(200).json({
         status: 'success',
-        message:  'review updated' 
+        message:  'a review was updated' 
       });
 
   } catch (e) {
@@ -56,7 +56,7 @@ const updateReview = async (req: Request, res: Response) => {
 const postReview = async (req: RequestExt, res: Response) => {
   try {
     const { movieId } = req.params;
-    const responseUser = await insertService(req.body, movieId, req.user);
+    const responseUser = await insertService(req.body, movieId, `${req?.user}`);
     res.status(201).json({
         status: 'success',
         data:  responseUser 
@@ -74,7 +74,7 @@ const deleteReview = async ({ params }: Request, res: Response) => {
 
      res.status(200).json({
         status: 'success',
-        message:  'review deleted' 
+        message:  'a review was deleted' 
       });
       
   } catch (e) {

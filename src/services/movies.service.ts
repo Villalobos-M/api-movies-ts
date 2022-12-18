@@ -1,4 +1,4 @@
-import { Movie } from "../interfaces/movie.interface";
+import { IMovie } from "../interfaces/movie.interface";
 import ActorModel from "../models/actor.model";
 import movieModel from "../models/movie.model";
 
@@ -15,14 +15,15 @@ const getByIdService = async (id: string) => {
   return responseItem;
 };
 
-const insertService= async (Movie: Movie, file: string) => {
+const insertService= async (Movie: IMovie, path: string) => {
   const {title, description, duration, top, genre, actorsId} = Movie
-  const newMovie = {title, description, duration, top, genre, actorsId, image: file}
+  const newMovie = {title, description, duration, top, genre, actorsId, image: path}
   const responseInsert = await movieModel.create(newMovie);
   return responseInsert;
 };
+// subir img a actors, documentar el swagger de actors, notion de swagger y multer
 
-const updateService = async (id: string, data: Movie) => {
+const updateService = async (id: string, data: IMovie) => {
   const responseItem = await movieModel.findOneAndUpdate({ _id: id }, data, {
     new: true,
   });

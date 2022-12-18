@@ -1,4 +1,4 @@
-import { User } from "../interfaces/user.interface";
+import { IUser } from "../interfaces/user.interface";
 import userModel from "../models/user.model";
 
 //.populate('reviews', {title: 1, movieId: 1})
@@ -15,14 +15,12 @@ const getAllService = async () => {
   return responseItem;
 };
 
-
-
 const getByIdService = async (id: string) => {
   const responseItem = await userModel.findOne({ _id: id });
   return responseItem;
 };
 
-const updateService = async (id: string, data: User) => {
+const updateService = async (id: string, data: IUser) => {
   const responseItem = await userModel.findOneAndUpdate({ _id: id }, data, {
     new: true,
   });

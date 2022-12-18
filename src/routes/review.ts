@@ -22,16 +22,16 @@ const router = Router();
  *      properties:
  *        title:
  *          type: string
- *          description: the auto-generated id of task
+ *          description: the title of review
  *        text:
  *          type: string
- *          description: the name of the user
+ *          description: the text of the review
  *        rating:
  *          type: number
- *          description: the email of the user
+ *          description: the rating of the movie 0-5
  *        status:
  *          type: string
- *          description: the auto-generated role of user
+ *          description: auto-generated 
  *        userId:
  *          type: array
  *          description: the userId autosaves
@@ -43,8 +43,8 @@ const router = Router();
  *        - text
  *      example:
  *        id: gQBOyGbxcQy6tEp0aZ78X
- *        title: Buena peli
- *        text: me gusto mucho, excelentes actores
+ *        title: Buena pelicula
+ *        text: Me gusto mucho, excelentes actores
  *        rating: 5
  *        status: active
  *        userId: gQB1yGaxcLy6tMp0aZ79X
@@ -54,43 +54,16 @@ const router = Router();
  *      properties:
  *        title:
  *          type: string
- *          description: the atitle of review
+ *          description: the a title of review
  *        text:
  *          type: string
- *          description: the text/description of the movie
+ *          description: the text/description of the review
  *        rating:
  *          type: number
  *          description: the rating of the movie
  *      required:
  *        - title
  *        - text
- *    PutMovie:
- *      type: object
- *      properties:
- *        title:
- *          type: string
- *          description: the auto-generated id of task
- *        description:
- *          type: string
- *          description: the name of the user
- *        duration:
- *          type: string
- *          description: the email of the user
- *        top:
- *          type: number
- *          description: the password of the user
- *        genre:
- *          type: string
- *          description: the auto-generated role of user
- *        image:
- *          type: string
- *          description: the auto-generated role of user
- *    ActorInMovie:
- *      type: object
- *      properties:
- *        actor:
- *          type: string
- *          description: id actor
  *    ReviewNotFound:
  *      type: object
  *      properties:
@@ -113,7 +86,7 @@ const router = Router();
  *          type: string
  *          description: A status for the not owner review
  *      example:
- *        message: Acceso denegado, No tienes permiso para editar esta reseña
+ *        message: You do not have permissions to execute this action
  *        status: error
  *    Auth:
  *      type: object

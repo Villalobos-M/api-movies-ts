@@ -101,7 +101,7 @@ const router = Router();
  *        status:
  *          type: string
  *      example:
- *        message: Acceso denegado, no tienes permiso para manipular actores
+ *        message: You do not have permissions to execute this action
  *        status: error
  *    Auth:
  *      type: object
@@ -203,16 +203,47 @@ router.get("/:id", validateSesion, getActor);
  *    requestBody:
  *      required: true
  *      content:
- *        application/json:
+ *        multipart/form-data:
  *          schema:
- *            $ref: '#/components/schemas/PutPostActor'
+ *            type: object
+ *            properties:
+ *              name:
+ *                type: string
+ *                description: the name of the actor
+ *              country:
+ *                type: string
+ *                description: the country of the actor
+ *              age:
+ *                type: number
+ *                description: the age of the actor
+ *              oscarsPrizes:
+ *                type: number
+ *                description: the oscarsPrizes number of the actor
+ *              genre:
+ *                type: string
+ *                description: the genre of the actor
+ *              actorImage:
+ *                type: string
+ *                format: binary
+ *                description: actor profile picture
+ *            required:
+ *              - name
+ *              - country
+ *              - actorImage
  *    responses:
  *      201:
  *        description: the movie was successfully create
  *        content:
  *          application/json:
  *            schema:
- *              $ref: '#/components/schemas/Actor'
+ *              type: object
+ *              properties:
+ *                status:
+ *                  type: string
+ *                  example: succes
+ *                message:
+ *                  type: string
+ *                  example: an actor was created
  *      403:
  *        description: The user does not have permissions
  *        content:
@@ -297,7 +328,7 @@ router.put("/:id", validateSesion, protectAdmin, updateActor);
  *                  type: string
  *                  example: succes
  *                message:
- *                  type: array
+ *                  type: string
  *                  example: an actor was deleted
  *      403:
  *        description: The user does not have permissions

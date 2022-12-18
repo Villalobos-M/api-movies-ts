@@ -1,5 +1,5 @@
-import { Actor } from "../interfaces/actor.interface";
-import { Movie } from "../interfaces/movie.interface";
+import { IActor } from "../interfaces/actor.interface";
+import { IMovie } from "../interfaces/movie.interface";
 import actorModel from "../models/actor.model";
 
 
@@ -15,13 +15,13 @@ const getByIdService = async (id: string) => {
   return responseItem;
 };
 
-const insertService= async (actor: Actor, path: string) => {
+const insertService= async (actor: IActor, path: string) => {
   const {name, country, age, oscarsPrizes, genre} = actor
   const newUser = {name, country, age, oscarsPrizes, genre, image:path}
   const responseInsert = await actorModel.create(newUser);
   return responseInsert;
 };
-const updateService = async (id: string, data: Movie) => {
+const updateService = async (id: string, data: IMovie) => {
   const responseItem = await actorModel.findOneAndUpdate({ _id: id }, data, {
     new: true,
   });

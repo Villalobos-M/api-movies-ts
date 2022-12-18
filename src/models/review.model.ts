@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
-import { Review } from "../interfaces/review.interface";
+import { IReview } from "../interfaces/review.interface";
 
-const ReviewSchema = new Schema<Review>(
+const ReviewSchema = new Schema<IReview>(
   {
     title: {
       required: true,

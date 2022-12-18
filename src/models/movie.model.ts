@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
-import { Movie } from "../interfaces/movie.interface";
+import { IMovie } from "../interfaces/movie.interface";
 
-const MovieSchema = new Schema<Movie>(
+const MovieSchema = new Schema<IMovie>(
   {
     title: {
       required: true,

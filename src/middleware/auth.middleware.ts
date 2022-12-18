@@ -26,8 +26,10 @@ const validateSesion = async(req: RequestExt, res: Response, next: NextFunction)
     }
     } catch (e) {
     console.log({ e });
-    res.status(400);
-    res.send("SESSION_NO_VALIDAD");
+    res.status(400).json({
+        status: 'error',
+        message:  'SESSION_NO_VALIDAD, you need to login' 
+       })
   }
 };
 
@@ -35,7 +37,10 @@ const protectAdmin = async (req: RequestExt, res: Response, next: NextFunction) 
   const user = await getByIdService(`${req?.user}`)
   
   if (!user || user.role !== 'admin') {
-    res.send('No tienes permisos para ejecutar esta accion') 
+    res.status(403).json({
+      status: 'error',
+      message:  'You do not have permissions to execute this action' 
+      })
   }else{
     next();
   }

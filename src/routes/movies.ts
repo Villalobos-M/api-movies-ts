@@ -37,7 +37,7 @@ const router = Router();
  *          description: the auto-generated role of user
  *        image:
  *          type: string
- *          description: the auto-generated role of user
+ *          format: binary
  *        reviews:
  *          type: array
  *          description: the id of the review will be added only when the user submits it in "review/:movieId"
@@ -63,22 +63,22 @@ const router = Router();
  *      properties:
  *        title:
  *          type: string
- *          description: the auto-generated id of task
+ *          description: the title of task
  *        description:
  *          type: string
- *          description: the name of the user
+ *          description: the description of the movie
  *        duration:
  *          type: string
- *          description: the email of the user
+ *          description: how long a movie lasts
  *        top:
  *          type: number
- *          description: the password of the user
+ *          description: the top of the movie 0-10
  *        genre:
  *          type: string
- *          description: the auto-generated role of user
+ *          description: the genre of the movie
  *        image:
  *          type: string
- *          description: the auto-generated role of user
+ *          description: the image of the movie
  *      required:
  *        - title
  *        - description
@@ -103,7 +103,7 @@ const router = Router();
  *        status:
  *          type: string
  *      example:
- *        message: Acceso denegado, no tienes permiso para manipular peliculas
+ *        message: You do not have permissions to execute this action
  *        status: error
  *    Auth:
  *      type: object
@@ -203,13 +203,37 @@ router.get("/:id", validateSesion, getMovie);
  *  post:
  *    summary: create movie in system
  *    tags: [Movies]
- *    description: this endpoint can be accessed by a person with the role "admin", the image can be uploaded from the front or in "form-data"
+ *    description: this endpoint can be accessed by a person with the role "admin"
  *    requestBody:
  *      required: true
  *      content:
- *        application/json:
+ *        multipart/form-data:
  *          schema:
- *            $ref: '#/components/schemas/PostPutMovie'
+ *            type: object
+ *            properties:
+ *              title:
+ *                type: string
+ *                description: the title of the movie
+ *              description:
+ *                type: string
+ *                description: the description of the movie
+ *              duration:
+ *                type: string
+ *                description: the duration of the movie
+ *              top:
+ *               type: number
+ *               description: the top of the movie
+ *              genre:
+ *                type: string
+ *                description: the genre of movie
+ *              imageMovie:
+ *                type: string
+ *                format: binary
+ *                description: the image of the movie
+ *            required:
+ *              - title
+ *              - description
+ *              - duration
  *    responses:
  *      201:
  *        description: the movie was successfully create
@@ -238,7 +262,7 @@ router.get("/:id", validateSesion, getMovie);
  *    security:
  *      - bearerAuth: []
  */
-router.post("/", validateSesion, protectAdmin, multerMiddleware.single("myfile"), postMovie);
+router.post("/", validateSesion, protectAdmin, multerMiddleware.single("imageMovie"), postMovie);
 
 /**
  * @openapi

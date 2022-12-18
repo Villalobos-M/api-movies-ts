@@ -44,7 +44,7 @@ const updateUser = async (req: Request, res: Response) => {
 
     res.status(200).json({
       status: 'success',
-      message:  'user updated' 
+      message:  'an user was updated' 
     });
   
   } catch (e) {
@@ -59,7 +59,7 @@ const deleteUser = async ({ params }: Request, res: Response) => {
 
     res.status(200).json({
       status: 'success',
-      message:  'user de' 
+      message:  'an user was deleted' 
     });
 
   } catch (e) {

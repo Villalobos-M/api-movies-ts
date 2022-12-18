@@ -1,8 +1,7 @@
-import { Review } from "../interfaces/review.interface";
+import { IReview } from "../interfaces/review.interface";
 import movieModel from "../models/movie.model";
 import reviewModel from "../models/review.model";
 import UserModel from "../models/user.model";
-
 
 const getAllService = async () => {
   const responseItem = await reviewModel.find({}, {status:0})
@@ -16,7 +15,7 @@ const getByIdService = async (id: string) => {
   return responseItem;
 };
 
-const insertService= async (newReview: Review, movieId: String, user: any) => {
+const insertService= async (newReview: IReview, movieId: String, user: string) => {
   const responseInsert = await reviewModel.create({
       title: newReview.title,
       text: newReview.text,
@@ -40,7 +39,8 @@ const insertService= async (newReview: Review, movieId: String, user: any) => {
   );
   return responseInsert;
 };
-const updateService = async (id: string, data: Review) => {
+
+const updateService = async (id: string, data: IReview) => {
   const responseItem = await reviewModel.findOneAndUpdate({ _id: id }, data, {
     new: true,
   });
